@@ -1,0 +1,20 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
+  SuggestExtensions: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always  # força `# frozen_string_literal: true` no topo dos arquivos
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes  # prioriza aspas simples em vez de duplas
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes  # mas dentro de #{...}, permite duplas (mais legível)
+
+
+Style/Documentation:
+  Enabled: false
