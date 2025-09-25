@@ -5,14 +5,14 @@ module Builder
     # @param table [Model::Table]
     def initialize(table:)
       @table = table
-      @fields = @table.get_fields
+      @fields = @table.fields
       @values = []
     end
 
     # @param fields [Array<String>] list fields to insert
     # @return [Builder::Record]
     def fields(*fields)
-      @fields = @table.get_fields.filter { |field| fields.include? field.name }
+      @fields = @table.fields.filter { |field| fields.include? field.name }
       self
     end
 

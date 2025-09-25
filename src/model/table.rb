@@ -25,7 +25,7 @@ module Model
       @data << record
     end
 
-    def get_fields
+    def fields
       @metadata.fields
     end
 
