@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'src/builder/query/select_builder'
-require_relative 'src/enum/data_type'
-require_relative 'src/model/metadata'
-require_relative 'src/model/table'
-require_relative 'src/model/record'
-require_relative 'src/core'
-require_relative 'src/builder/table'
+require_relative 'config/autoload'
 
 core = Core.new data: {
   test: {
