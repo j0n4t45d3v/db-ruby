@@ -31,24 +31,18 @@ core = Core.new data: {
   }
 }
 
-# metadata_new_table = Model::Metadata.new fields: [
-#   Model::Field.new(name: 'id', type: DataType::INTEGER, constraint: nil, not_null: true),
-#   Model::Field.new(name: 'name', type: DataType::VARCHAR, constraint: nil, not_null: false)
-# ]
-#
-# new_table = Model::Table.new name: 'new_table', metadata: metadata_new_table
-#
-# fields = metadata_new_table.filter_fields(fields: %w[id name])
-# record = Model::Record.new(fields: fields, values: [1, 'test record'])
-
 new_table_builder = Builder::Table.new name: 'new_table'
 
 new_table = new_table_builder
-  .integer('id')
-  .string('name')
-  .build
+            .integer('id')
+            .string('name')
+            .build
 
-# new_table.insert record: record
+record_builder = Builder::Record.new table: new_table
+new_table.insert record: record_builder
+  .fields('id', 'name')
+  .values(2, 'John Doe')
+  .build
 
 core.create_table table: new_table
 

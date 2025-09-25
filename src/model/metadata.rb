@@ -46,6 +46,8 @@ module Model
   # @!attribute [] fields
   #   @return [Array<Field>]
   class Metadata
+    attr_reader :fields
+
     # @param fields [Array<Field>] list fields
     # @return [void]
     def initialize(fields:)

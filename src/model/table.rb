@@ -25,6 +25,10 @@ module Model
       @data << record
     end
 
+    def get_fields
+      @metadata.fields
+    end
+
     # @return [Hash<String, Object>]
     def to_hash
       {
