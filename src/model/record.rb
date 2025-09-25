@@ -2,14 +2,10 @@
 
 module Model
   class Record
-    # @!attribute fields [r]
-    #   @return [Array<Field>]
-    # @!attribute values [r]
-    #   @return [Array<Object>]
     attr_reader :fields, :values
 
     # @param fields [Array<Field>] list fields
-    # @para values [Array<Object>] list value fields
+    # @param values [Array<Object>] list value fields
     def initialize(fields:, values:)
       @fields = fields
       @values = values
