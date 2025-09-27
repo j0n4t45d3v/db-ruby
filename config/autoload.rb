@@ -19,6 +19,7 @@ end
 
 module Model
   base_model = File.join(Config::ROOT_DIR, 'model')
+  autoload :Where, File.join(base_model, 'where')
   autoload :Metadata, File.join(base_model, 'metadata')
   autoload :Field, File.join(base_model, 'metadata')
   autoload :Record, File.join(base_model, 'record')
