@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Core
+  # @param data [Hash<Symbol, Model::Table>]
   def initialize(data:)
     @data = data
   end
