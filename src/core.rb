@@ -9,7 +9,7 @@ class Core
   # @param table [Model::Table] table base model
   # @return [void]
   def create_table(table:)
-    @data[table.name] = table.to_hash
+    @data[table.name] = table
   end
 
   # @param from [String] table name
@@ -28,7 +28,7 @@ class Core
   # @param data [Model::Record] data fields and values
   # @return [void]
   def insert(from:, data:)
-    @data[from] << data
+    @data[from].insert record: data
   end
 
   def show_all
