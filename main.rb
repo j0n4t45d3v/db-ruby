@@ -2,34 +2,7 @@
 
 require_relative 'config/autoload'
 
-core = Core.new data: {
-  test: {
-    metadata: {
-      id: {
-        type: 'integer',
-        constraint: 'primary',
-        not_null: true,
-        default: 'increment'
-      },
-      name: {
-        type: 'varchar|30',
-        constraint: nil,
-        not_null: false,
-        default: nil
-      }
-    },
-    data: [
-      {
-        id: 1,
-        name: 'test 1'
-      },
-      {
-        id: 2,
-        name: 'teste 2'
-      }
-    ]
-  }
-}
+core = Core.new data: {}
 
 new_table_builder = Builder::Table.new name: 'new_table'
 
@@ -44,6 +17,17 @@ new_table.insert record: record_builder
   .values(2, 'John Doe')
   .build
 
+new_table.insert record: record_builder
+  .fields('id', 'name')
+  .values(1, 'Mary')
+  .build
+
+new_table.insert record: record_builder
+  .fields('id', 'name')
+  .values(3, 'Luke')
+  .build
+
 core.create_table table: new_table
 
-pp core.show_all
+where = Model::Where.new
+pp new_table.select(where: where).map(&:data_to_hash)
