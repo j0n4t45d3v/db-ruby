@@ -32,6 +32,6 @@ class Core
   end
 
   def show_all
-    @data
+    @data.map { |key, value| [key, value.to_hash] }
   end
 end
