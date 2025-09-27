@@ -14,6 +14,10 @@ task :console do
   sh 'bundle exec irb'
 end
 
+task :test do
+  sh 'bundle exec rspec'
+end
+
 namespace :lint do
   task :check do
     sh 'bundle exec rubocop'
