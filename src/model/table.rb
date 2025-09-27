@@ -20,11 +20,22 @@ module Model
     end
 
     # @param record [Record] new record to insert in table
+    # @return [void]
     def insert(record:)
       record.valid_fields?
       @data << record
     end
 
+    # @param where [Model::Where] new record to insert in table
+    # @return [Array<Record>]
+    def select(where:, fields: [:all])
+      result = where.empty? ? @data : @data.filter { |record| where.match record }
+      return result if fields.include? :all
+
+      filter_fields data: result, fields: fields
+    end
+
+    # @return [Array<Field>]
     def fields
       @metadata.fields
     end
@@ -32,9 +43,20 @@ module Model
     # @return [Hash<String, Object>]
     def to_hash
       {
-        metadata: @metadata,
-        data: @data
+        metadata: @metadata.to_hash,
+        data: @data.map(&:data_to_hash)
       }
+    end
+
+    private
+
+    def filter_fields(data:, fields:)
+      data.map do |record|
+        values = record.fields.filter_map { |idx, field| record.values[idx] if fields.include? field.name }
+        builder = Builder::Record.new table: self
+        builder.fields(*fields)
+               .values(*values)
+      end
     end
   end
 end
