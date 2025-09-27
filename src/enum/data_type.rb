@@ -7,7 +7,7 @@ module DataType
     end
 
     def display
-      name.to_s.capitalize
+      "#{name.to_s.capitalize}(#{max_size})"
     end
 
     # @param value [Object]
