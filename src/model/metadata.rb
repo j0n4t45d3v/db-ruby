@@ -12,20 +12,24 @@ module Model
   #   @return [Boolean]
   # @!attribute [r] default
   #   @return [T|nill]
+  # @!attribute [r] size
+  #   @return [Integer|nill]
   class Field
-    attr_reader :name, :type, :constraint, :not_null, :default
+    attr_reader :name, :type, :constraint, :not_null, :default, :size
 
     # @param name [String]  field name
     # @param type [DataType::Type] field type
     # @param constraint [Constraint::Type] field constraint
     # @param not_null [Boolean] if field is nullable
     # @param default [T|nil] field default value
-    def initialize(name:, type:, constraint:, not_null:, default: nil)
+    # @param size [Integer|nil] field length
+    def initialize(name:, type:, constraint:, not_null:, default: nil, size: nil)
       @name = name
       @type = type
       @constraint = constraint
       @not_null = not_null
       @default = default
+      @size = size || @type.lentgh
     end
 
     def type_valid?(value)
@@ -35,10 +39,11 @@ module Model
     # @return [Hash<String, Object>]
     def to_hash
       {
-        type: @type,
-        constraint: @constraint,
+        type: @type.display,
+        constraint: @constraint.display,
         not_null: @not_null,
-        default: @default
+        default: @default,
+        size: @size
       }
     end
   end
